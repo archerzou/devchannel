@@ -22,8 +22,8 @@ public class Question
     public bool HasAcceptedAnswer { get; set; }
     public int Votes { get; set; }
     
-    // public int AnswerCount { get; set; }
-    //
-    // // navigation properties
-    // public List<Answer> Answers { get; set; } = [];
+    public int AnswerCount { get; set; }
+    
+    // navigation properties
+    public List<Answer> Answers { get; set; } = [];
 }
