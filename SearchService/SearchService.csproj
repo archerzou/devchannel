@@ -9,12 +9,11 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.11"/>
         <PackageReference Include="Typesense" Version="7.38.0" />
-        <PackageReference Include="WolverineFx.RabbitMQ" Version="5.9.2" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Common\Common.csproj" />
       <ProjectReference Include="..\Contracts\Contracts.csproj" />
-      <ProjectReference Include="..\DevChannel.ServiceDefaults\DevChannel.ServiceDefaults.csproj" />
     </ItemGroup>
 
 </Project>

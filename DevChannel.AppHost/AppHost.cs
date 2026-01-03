@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Hosting;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var compose = builder.AddDockerComposeEnvironment("production")
@@ -15,11 +17,6 @@ var postgres = builder.AddPostgres("postgres", port: 5433)
     .WithPgAdmin();
 
 var typesenseApiKey = builder.AddParameter("typesense-api-key", secret: true);
-
-// var typesense = builder.AddContainer("typesense", "typesense/typesense", "29.0")
-//     .WithArgs("--data-dir", "data", "--api-key", typesenseApiKey, "--enable-cors")
-//     .WithVolume("typesense-data", "/data")
-//     .WithHttpEndpoint(8108, 8108, name: "typesense");
 
 var typesense = builder.AddContainer("typesense", "typesense/typesense", "29.0")
     .WithVolume("typesense-data", "/data")
