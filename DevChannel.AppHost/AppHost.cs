@@ -13,6 +13,7 @@ var keycloak = builder.AddKeycloak("keycloak", 6001)
     .WithRealmImport("../infra/realms")
     .WithEnvironment("KC_HTTP_ENABLED", "true")
     .WithEnvironment("KC_HOSTNAME_STRICT", "false")
+    // .WithEndpoint(6001, 8080, "keycloak", isExternal: true)
     .WithEnvironment("VIRTUAL_HOST", "id.devchannel.local")
     .WithEnvironment("VIRTUAL_PORT", "8080");
 
@@ -60,10 +61,15 @@ var yarp = builder.AddYarp("gateway")
         yarpBuilder.AddRoute("/tags/{**catch-all}", questionService);
         yarpBuilder.AddRoute("/search/{**catch-all}", searchService);
     })
+    .WithoutHttpsCertificate()
     .WithEnvironment("ASPNETCORE_URLS", "http://*:8001")
     .WithEndpoint(port: 8001, scheme: "http", targetPort: 8001, name: "gateway", isExternal: true)
     .WithEnvironment("VIRTUAL_HOST", "api.devchannel.local")
     .WithEnvironment("VIRTUAL_PORT", "8001");
+
+var webapp = builder.AddJavaScriptApp("webapp", "../webapp")
+    .WithReference(keycloak)
+    .WithHttpEndpoint(env: "PORT", port: 3000, targetPort: 4000);
 
 if (!builder.Environment.IsDevelopment())
 {
