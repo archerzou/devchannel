@@ -17,6 +17,16 @@ export async function getQuestions(tag?:string): Promise<Question[]> {
     return response.json();
 }
 
+export async function getQuestionById(id: string): Promise<Question> {
+    const url = `http://localhost:8001/questions/${id}`;
+    const response = await fetch(url);
+
+    if (!response.ok) throw new Error('Failed to fetch questions');
+
+    return response.json();
+}
+
+
 
 // export async function getQuestions(qParams?: QuestionParams): Promise<FetchResponse<PaginatedResult<Question>>> {
 //     const params = new URLSearchParams();
@@ -66,7 +76,7 @@ export async function getQuestions(tag?:string): Promise<Question[]> {
 //         }
 //     };
 // }
-//
+
 // export async function getQuestionById(id: string): Promise<FetchResponse<Question>> {
 //     const {data: question, error: questionError} =
 //         await fetchClient<Question>(`/questions/${id}`, 'GET');
@@ -134,7 +144,7 @@ export async function getQuestions(tag?:string): Promise<Question[]> {
 // export async function deleteQuestion(id: string) {
 //     return fetchClient(`/questions/${id}`, 'DELETE');
 // }
-//
+
 // export async function postAnswer(data: AnswerSchema, questionId: string) {
 //     const result = await fetchClient<Answer>(`/questions/${questionId}/answers`,  'POST', {body: data});
 //
@@ -149,7 +159,7 @@ export async function getQuestions(tag?:string): Promise<Question[]> {
 //     revalidatePath(`/questions/${questionId}`)
 //     return result;
 // }
-//
+
 // export async function deleteAnswer(answerId: string, questionId: string) {
 //     const result = await fetchClient(`/questions/${questionId}/answers/${answerId}`,
 //         'DELETE');
