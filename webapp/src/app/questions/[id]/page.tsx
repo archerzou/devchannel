@@ -14,7 +14,7 @@ export default async function QuestionDetailed({ params, searchParams }
                                                : {params: Params, searchParams: SearchParams}) {
     const { id } = await params;
     const {sort} = await searchParams;
-    const question= await getQuestionById(id);
+    const {data: question, error} = await getQuestionById(id);
 
     // if (error) throw error;
     if (!question) return notFound();

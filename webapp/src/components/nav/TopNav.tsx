@@ -2,7 +2,7 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/nav/ThemeToggle";
 import {Input} from "@heroui/input";
-// import SearchInput from "@/components/nav/SearchInput";
+import SearchInput from "@/components/nav/SearchInput";
 import LoginButton from "@/components/nav/LoginButton";
 // import {getCurrentUser} from "@/lib/actions/auth-actions";
 import UserMenu from "@/components/nav/UserMenu";
@@ -28,7 +28,7 @@ export default async function TopNav() {
                     </nav>
                 </div>
 
-                {/*<SearchInput />*/}
+                <SearchInput />
                 <Input 
                     startContent={<MagnifyingGlassIcon className='size-6'/>}
                     className='ml-6'
