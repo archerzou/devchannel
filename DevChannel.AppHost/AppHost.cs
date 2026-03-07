@@ -7,6 +7,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var compose = builder.AddDockerComposeEnvironment("production")
     .WithDashboard(dashboard => dashboard.WithHostPort(8080));
 
+
 var keycloak = builder.AddKeycloak("keycloak", 6001)
     .WithoutHttpsCertificate()
     .WithDataVolume("keycloak-data")
@@ -60,6 +61,7 @@ var yarp = builder.AddYarp("gateway")
         yarpBuilder.AddRoute("/questions/{**catch-all}", questionService);
         yarpBuilder.AddRoute("/tags/{**catch-all}", questionService);
         yarpBuilder.AddRoute("/search/{**catch-all}", searchService);
+        yarpBuilder.AddRoute("/test/{**catch-all}", questionService);
     })
     .WithoutHttpsCertificate()
     .WithEnvironment("ASPNETCORE_URLS", "http://*:8001")

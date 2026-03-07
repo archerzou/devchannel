@@ -20,7 +20,7 @@ export default function UserMenu({user}: Props) {
             <DropdownMenu aria-label="Static Actions">
                 <DropdownItem href={`/profiles/${user.id}`} key="edit">Edit Profile</DropdownItem>
                 <DropdownItem
-                    // onClick={() => signOut({redirectTo: '/'})}
+                    onClick={() => signOut({redirectTo: '/'})}
                     key="logout"
                     className="text-danger"
                     color="danger"
